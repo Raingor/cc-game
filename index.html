@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚪 任意门的回忆问答 · 送给CC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== 背景氛围层 ===== -->
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="ambient-gradient"></div>
+        <div class="ambient-grid"></div>
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+    </div>
+
+    <!-- ===== 飘浮装饰 ===== -->
+    <div class="floaties" aria-hidden="true">
+        <span class="floaty" style="top:6%;left:3%;animation-delay:0s;font-size:2.2rem;">🔔</span>
+        <span class="floaty" style="top:20%;right:5%;animation-delay:-2.5s;font-size:2.6rem;">🐬</span>
+        <span class="floaty" style="top:45%;left:1%;animation-delay:-5s;font-size:2rem;">🍩</span>
+        <span class="floaty" style="top:65%;right:3%;animation-delay:-1.5s;font-size:2.4rem;">⭐</span>
+        <span class="floaty" style="top:78%;left:7%;animation-delay:-7s;font-size:1.8rem;">💕</span>
+        <span class="floaty" style="top:12%;right:15%;animation-delay:-4s;font-size:1.6rem;">✨</span>
+        <span class="floaty" style="top:55%;left:12%;animation-delay:-3s;font-size:1.4rem;">🌸</span>
+        <span class="floaty" style="top:88%;right:10%;animation-delay:-6s;font-size:1.6rem;">🎠</span>
+    </div>
+
+    <!-- ================================================================
+         开始画面
+    ================================================================ -->
+    <section class="screen screen-start" id="screenStart">
+        <div class="start-door-frame">
+            <div class="door-left"></div>
+            <div class="door-right"></div>
+            <div class="door-keyhole">🚪</div>
+        </div>
+
+        <div class="start-content">
+            <!-- 哆啦A梦 -->
+            <div class="start-dora-wrap">
+                <div class="start-dora-glow"></div>
+                <img src="images/doraemon.png" alt="哆啦A梦" class="start-dora-img">
+                <div class="start-dora-shadow"></div>
+            </div>
+
+            <h1 class="start-title">
+                <span class="start-title-deco">✦</span>
+                <span class="start-title-line">任意门的回忆问答</span>
+                <span class="start-title-sub">CC 还记得吗？</span>
+            </h1>
+
+            <p class="start-desc">
+                关于我们的故事，我来提问，你来回答<br>
+                看看你对这段时光还记得多少吧
+            </p>
+
+            <!-- 难度选择 -->
+            <div class="diff-group">
+                <p class="diff-label">选择挑战难度</p>
+                <div class="diff-cards">
+                    <button class="diff-card active" data-level="easy" data-count="8">
+                        <span class="diff-card-icon">🌱</span>
+                        <span class="diff-card-body">
+                            <span class="diff-card-name">简单</span>
+                            <span class="diff-card-count">8 题·轻松回忆</span>
+                        </span>
+                    </button>
+                    <button class="diff-card" data-level="normal" data-count="14">
+                        <span class="diff-card-icon">🌿</span>
+                        <span class="diff-card-body">
+                            <span class="diff-card-name">普通</span>
+                            <span class="diff-card-count">14 题·重温时光</span>
+                        </span>
+                    </button>
+                    <button class="diff-card" data-level="hard" data-count="20">
+                        <span class="diff-card-icon">🌸</span>
+                        <span class="diff-card-body">
+                            <span class="diff-card-name">困难</span>
+                            <span class="diff-card-count">20 题·真爱挑战</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="start-btn" id="startGameBtn">
+                <span class="start-btn-bg"></span>
+                <span class="start-btn-text">打开任意门，开始回忆</span>
+            </button>
+
+            <p class="start-footer">Made with <span class="heart">❤️</span> for CC</p>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         问答画面
+    ================================================================ -->
+    <section class="screen screen-quiz" id="screenGame" style="display:none;">
+        <!-- 顶栏 -->
+        <div class="quiz-topbar">
+            <div class="quiz-topbar-inner">
+                <button class="quiz-back" id="backToMenuBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+                </button>
+                <div class="quiz-progress-wrap">
+                    <div class="quiz-progress-track">
+                        <div class="quiz-progress-fill" id="progressBar"></div>
+                    </div>
+                </div>
+                <div class="quiz-stats">
+                    <span class="quiz-stat-score">
+                        <span class="quiz-stat-num" id="correctCount">0</span>
+                        <span class="quiz-stat-slash">/</span>
+                        <span class="quiz-stat-total" id="totalQuestions">0</span>
+                    </span>
+                    <span class="quiz-stat-acc" id="accuracyDisplay">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-body">
+            <div class="quiz-main">
+                <!-- 左侧：题目 + 选项 -->
+                <div class="quiz-qarea">
+                    <div class="q-step">
+                        <span class="q-step-label">QUESTION</span>
+                        <span class="q-step-num" id="qpLabel">第 1 / 8 题</span>
+                    </div>
+                    <div class="q-card" id="questionCard">
+                        <div class="q-card-glow"></div>
+                        <div class="q-card-content">
+                            <span class="q-icon" id="qIcon">💕</span>
+                            <p class="q-text" id="qText">题目加载中...</p>
+                        </div>
+                    </div>
+                    <div class="q-options" id="options"></div>
+
+                    <div class="q-countdown" id="autoCountdown" style="display:none;">
+                        <div class="q-countdown-track">
+                            <div class="q-countdown-bar" id="countdownBar"></div>
+                        </div>
+                        <span class="q-countdown-text" id="countdownText">即将进入下一题...</span>
+                    </div>
+                </div>
+
+                <!-- 右侧：回忆 -->
+                <div class="quiz-marea">
+                    <div class="q-memory-placeholder" id="memoryPlaceholder">
+                        <div class="q-mp-door">🚪</div>
+                        <img src="images/doraemon.png" alt="" class="q-mp-dora-img">
+                        <p class="q-mp-text">答完题后，回忆会<br>悄悄从任意门里出现 ✨</p>
+                    </div>
+                    <div class="q-memory" id="memoryReveal" style="display:none;">
+                        <div class="q-memory-card" id="mrContent">
+                            <div class="q-memory-card-inner">
+                                <div class="q-memory-photo" id="mrPhoto">
+                                    <img src="" alt="" id="mrPhotoImg">
+                                    <div class="q-memory-photo-overlay">
+                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                                    </div>
+                                </div>
+                                <div class="q-memory-info">
+                                    <span class="q-memory-date" id="mrDate"></span>
+                                    <h3 class="q-memory-title" id="mrTitle"></h3>
+                                    <p class="q-memory-snippet" id="mrSnippet"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         完成画面
+    ================================================================ -->
+    <section class="screen screen-end" id="screenComplete" style="display:none;">
+        <div class="end-fireworks" id="fireworks"></div>
+        <div class="end-content">
+            <div class="end-dora-wrap">
+                <div class="end-dora-glow"></div>
+                <img src="images/doraemon.png" alt="哆啦A梦" class="end-dora-img">
+            </div>
+
+            <h2 class="end-title" id="completeTitle">🎉 挑战完成！</h2>
+
+            <!-- 分数圆环 -->
+            <div class="end-score" id="scoreRing">
+                <div class="end-score-inner">
+                    <span class="end-score-num" id="scoreNumber">0</span>
+                    <span class="end-score-unit">分</span>
+                </div>
+            </div>
+
+            <div class="end-grade" id="gradeBadge"></div>
+            <p class="end-message" id="completeMessage"></p>
+
+            <div class="end-actions">
+                <button class="end-btn primary" id="replayBtn">再来一次</button>
+                <button class="end-btn ghost" id="menuBtn">返回首页</button>
+            </div>
+
+            <p class="end-footer">「我会用任意门，带你去看全世界的风景」</p>
+        </div>
+    </section>
+
+    <!-- ===== 灯箱 ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
